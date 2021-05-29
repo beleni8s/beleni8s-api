@@ -77,4 +77,7 @@ export JSON_PAYLOAD="{
   \"title\": \"${ELEC_TITLE}\",
   \"uuid\": \"${ELEC_UUID}\"
 }"
+
+curl -H 'Content-type: application/json' -X POST -d "${JSON_PAYLOAD}"  http://[::1]:3000/election | jq .
+
 ```
