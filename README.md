@@ -88,3 +88,6 @@ curl -H 'Content-type: application/json' -X POST -d "${JSON_PAYLOAD}"  http://[:
 curl -H 'Accept: application/json' http://[::1]:3000/election/count | jq .
 
 ```
+
+* http://[::1]:3000/openapi.json
+* http://[::1]:3000/explorer
