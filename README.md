@@ -71,7 +71,7 @@ understand how you can continue to add features to this application.
 ## Test the Election Endpoint
 
 ```bash
-export ELEC_TITLE="election_pierredemo"
+export ELEC_TITLE="election_pierre_et_jb_demo"
 export ELEC_UUID="ed591787-c8b7-4a6a-b342-9175caffca92"
 
 export JSON_PAYLOAD="{
@@ -80,5 +80,11 @@ export JSON_PAYLOAD="{
 }"
 
 curl -H 'Content-type: application/json' -X POST -d "${JSON_PAYLOAD}"  http://[::1]:3000/election | jq .
+
+
+# ---
+
+
+curl -H 'Accept: application/json' http://[::1]:3000/election/count | jq .
 
 ```

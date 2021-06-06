@@ -19,12 +19,16 @@ import {
 } from '@loopback/rest';
 import {Election} from '../models/election.model';
 import {ElectionRepository} from '../repositories';
+import {BeleniosExecutor} from '../beleni8s';
 
 export class ElectionManagerController {
+  public belenios : BeleniosExecutor;
   constructor(
     @repository(ElectionRepository)
-    public electionRepository : ElectionRepository,
-  ) {}
+    public electionRepository : ElectionRepository
+  ) {
+    this.belenios = new BeleniosExecutor();
+  }
 
   @post('/election')
   @response(200, {
@@ -43,8 +47,14 @@ export class ElectionManagerController {
     })
     election: Election,
   ): Promise<Election> {
-    console.log(` donc là JB et Pierre veulent créer une élection Jaune`)
-    return this.electionRepository.create(election);
+    console.log(` donc là JB et Pierre veulent créer une élection Jaune [${election.title}]`)
+    // first create the UUID of the election using belenios
+    let electionUUID: string = this.belenios.createElection({title: election.title})
+    election.uuid = electionUUID;
+    // Then create the election into the database
+    let promisedElection: Promise<Election> = this.electionRepository.create(election)
+    // and return the promise of an Election returned by the repository
+    return promisedElection;
   }
 
   @get('/election/count')
@@ -54,7 +64,7 @@ export class ElectionManagerController {
   })
   async count(
     @param.where(Election) where?: Where<Election>,
-  ): Promise<Count> {
+  ): Promise<Number> {
     console.log(` donc là JB et Pierre veulent dénombrer les élections Jaunes en cours`)
     return this.electionRepository.count(where);
   }

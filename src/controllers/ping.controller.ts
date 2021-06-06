@@ -53,7 +53,7 @@ export class PingController {
       // throw new Error(`{[ReleaseProcessStatePersistenceManager]} - [tagReleaseStart(tag_message: string): void] - An Error occurred executing the [git tag -l | grep ${tag_id}] shell command. Shell error was [` + isThisAResumeReleaseCmdResult.stderr + "] ")
       console.log(`{[PingController]} - [tagReleaseStart(tag_message: string): void] - there has been a problme executing 'cd /tmp/pierre && echo 'et voilà pierre' > le.ficheir.de.pierre' `)
     } else {
-      let isThisAResumeReleaseCmdStdOUT: string = demoPierreCommand.stdout;
+      let demoPierreCommandStdOUT: string = demoPierreCommand.stdout;
       console.log(`{[PingController]} - [get('/ping')] - QUICK PIERRE : /tmp/pierre/le.ficheir.de.pierre a été créé`)
     }
     // ---

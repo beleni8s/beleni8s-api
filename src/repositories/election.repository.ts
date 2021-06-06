@@ -35,16 +35,18 @@ export class ElectionRepository extends DefaultKeyValueRepository<
     return createdElection;
   }
 
-  async count(data: any): Promise<Count> {
+  async count(data: any): Promise<Number> {
     const createdElection = this.countElections();
     return createdElection;
   }
 
-  private async countElections(): Promise<Count> {
-    const electionCount = new Promise<Count>(() => {
+  // private async countElections(): Promise<Count> {
+  private countElections(): Number {
+    /* const electionCount = new Promise<Count>(() => {
       console.log("ok c fait");
       return 56;
-    });
+    }); */
+    let electionCount: number = 56;
     return electionCount;
   }
 }
